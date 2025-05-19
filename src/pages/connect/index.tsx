@@ -2,22 +2,15 @@ import { ActionBtn } from "@/components/actionBtn/ActionBtn";
 import { ConnectorCard } from "@/components/connectorCard/ConnectorCard";
 import { Modal } from "@/components/Modal/Modal";
 import { connections } from "@/models/connections";
+import { Connector } from "@/types/connections";
 import Image from "next/image";
 import { useState } from "react";
 
 const Connect = () => {
-  const [selected, setSelected] = useState<{
-    id: string;
-    name: string;
-    requireAuth: boolean;
-  }>();
+  const [selected, setSelected] = useState<Connector>();
   const [showModal, setShowModal] = useState(false);
 
-  const handleSelection = (connector: {
-    id: string;
-    name: string;
-    requireAuth: boolean;
-  }) => {
+  const handleSelection = (connector: Connector) => {
     setSelected((prev) => (prev?.id === connector.id ? undefined : connector));
   };
 
