@@ -32,6 +32,7 @@ export const Verification = ({ onVerificationSuccess }: Props) => {
       <div className="flex gap-2.5">
         {[0, 1, 2, 3, 4, 5].map((index) => (
           <input
+            autoFocus={index === 0}
             className="w-[62px] text-primary-light flex text-center h-20 bg-white/10 p-2.5 rounded-sm text-4xl [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             key={index}
             type="number"

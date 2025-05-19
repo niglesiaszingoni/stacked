@@ -19,6 +19,7 @@ export const Signin = ({ onSignin }: Props) => {
         <Input
           id="email"
           icon="email"
+          autofocus
           onChange={handleUpdateForm}
           placeholder="Email address"
         />
