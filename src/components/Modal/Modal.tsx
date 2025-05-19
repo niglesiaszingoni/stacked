@@ -55,9 +55,7 @@ export const Modal = ({ connector, onClose }: Props) => {
             </button>
           )}
         </div>
-        {currentStep === 0 && (
-          <Signin connector={connector} onSignin={handleSignin} />
-        )}
+        {currentStep === 0 && <Signin onSignin={handleSignin} />}
 
         {currentStep === 1 && (
           <Verification onVerificationSuccess={handleVerificationSuccess} />

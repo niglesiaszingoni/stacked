@@ -40,9 +40,9 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --primary-dark: #030303;
-  --primary-light: #FFFFF6;
-  --primary-grey: #9D9D95;
-  --primary-green: #B5FF4D;
+  --primary-light: #fffff6;
+  --primary-grey: #9d9d95;
+  --primary-green: #b5ff4d;
 }
 
 @theme inline {

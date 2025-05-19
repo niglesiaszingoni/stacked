@@ -1,6 +1,6 @@
 import { ActionBtn } from "@/components/actionBtn/ActionBtn";
 import { ConnectorCard } from "@/components/connectorCard/ConnectorCard";
-import { Modal } from "@/components/Modal/Modal";
+import { Modal } from "@/components/modal/Modal";
 import { connections } from "@/models/connections";
 import { Connector } from "@/types/connections";
 import Image from "next/image";
