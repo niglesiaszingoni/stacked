@@ -63,6 +63,7 @@ const Connect = () => {
             disabled={!selected}
             onClick={toggleModal}
             label="Continue"
+            disableText="Add at least one platform to Continue"
           />
         </div>
       </div>
