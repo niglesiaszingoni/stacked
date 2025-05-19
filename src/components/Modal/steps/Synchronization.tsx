@@ -148,12 +148,15 @@ export const Synchronization = () => {
                   key={detail?.name}
                   className="flex justify-between pb-1 [&:not(:last-child)]:border-b-[1px] border-b-[#404040]"
                 >
-                  <div className="flex flex-col text-primary-lighttext-sm">
+                  <div className="flex flex-col text-primary-light text-sm">
                     <span
                       className={`${
                         detail.state === "success"
                           ? "text-primary-green"
                           : "text-[#E5E5DD]"
+                      } ${
+                        detail.state === "loading" &&
+                        "bg-gradient-to-r from-[#E5E5DD]/60 via-[#E5E5DD] to-[#5E5DD]/60 text-transparent bg-clip-text animate-gradient"
                       }`}
                     >
                       {detail?.name}
