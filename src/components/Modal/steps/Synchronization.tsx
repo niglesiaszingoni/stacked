@@ -122,9 +122,11 @@ export const Synchronization = () => {
             <div className="flex items-center gap-4 ">
               <div className="flex flex-col gap-0.5">
                 <span className="text-lg text-primary-light">{step.name}</span>
-                {/* {connection.requireAuth && (
-                        <span className="text-[#9D9D95] text-xs">2FA required</span>
-                      )} */}
+                {step.subtitle && step.state === "success" && (
+                  <span className="text-[#9D9D95] text-xs">
+                    {step.subtitle}
+                  </span>
+                )}
               </div>
             </div>
             {step.state === "success" && (

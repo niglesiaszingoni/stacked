@@ -3,6 +3,7 @@ export type SyncStep = {
   name: string;
   state: string;
   hasExtraData: boolean;
+  subtitle?: string;
 };
 export type SyncDetailStep = {
   id: number;

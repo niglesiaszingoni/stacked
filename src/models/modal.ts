@@ -9,6 +9,7 @@ export const ModalSyncSteps = [
     id: "2",
     name: "Finding Active Slates",
     state: "initial",
+    subtitle: "4 leagues found",
     hasExtraData: false,
   },
   {
