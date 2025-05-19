@@ -27,7 +27,7 @@ export const Modal = ({ connector, onClose }: Props) => {
   return (
     <>
       {/* Backdrop */}
-      <div className="w-full h-full top-0 absolute bg-white/40" />
+      <div className="w-full h-full top-0 absolute bg-white/15" />
       {/* Modal content */}
       <div className="min-w-[480px] absolute top-[20%] bg-primary-dark p-8 rounded-lg flex flex-col gap-4">
         <div className="flex justify-between">
