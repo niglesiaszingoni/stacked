@@ -8,6 +8,7 @@ interface Props {
 }
 
 export const Signin = ({ onSignin }: Props) => {
+  // TODO: Since everything is mocked and not connected, we are not using zod or react-hook-form for now.
   const [formData, setFormData] = useState<FormData>({ email: "", pwd: "" });
 
   const handleUpdateForm = (key: string, value: string) => {

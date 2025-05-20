@@ -4,7 +4,10 @@ interface Props {
   onVerificationSuccess: () => void;
 }
 
+// TODO: Since everything is mocked and not connected, we are not using zod or react-hook-form for now.
 export const Verification = ({ onVerificationSuccess }: Props) => {
+
+  // TODO: we don't use any state to store the code for now since it's not connected ot anything.
   const authCode = useRef<number[]>([]);
 
   const handleInputChange = (index: number, value: string) => {

@@ -4,15 +4,23 @@ import { SyncDetailStep, SyncStep } from "@/types/synchronization";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+const SYNC_STATUS = {
+  LOADING: "loading",
+  INITIAL: "initial",
+  SUCCESS: "success",
+};
+
 export const Synchronization = () => {
   const [syncSteps, setSyncSteps] = useState<SyncStep[]>(ModalSyncSteps);
   const [stepSyncDetail, setStepSyncDetail] = useState<SyncDetailStep[]>([]);
 
   useEffect(() => {
     const nextStepToSimulate = syncSteps.find(
-      (step) => step.state === "initial"
+      (step) => step.state === SYNC_STATUS.INITIAL
     );
-    const isStepLoading = syncSteps.find((step) => step.state === "loading");
+    const isStepLoading = syncSteps.find(
+      (step) => step.state === SYNC_STATUS.LOADING
+    );
 
     if (nextStepToSimulate && !isStepLoading) {
       if (nextStepToSimulate.hasExtraData) {
@@ -21,7 +29,7 @@ export const Synchronization = () => {
       setSyncSteps((prev) =>
         prev.map((step) =>
           step.id === nextStepToSimulate.id
-            ? { ...step, state: "loading" }
+            ? { ...step, state: SYNC_STATUS.LOADING }
             : step
         )
       );
@@ -36,7 +44,9 @@ export const Synchronization = () => {
     setTimeout(() => {
       setSyncSteps((prev) =>
         prev.map((step) =>
-          step.id === currentSyncStep ? { ...step, state: "success" } : step
+          step.id === currentSyncStep
+            ? { ...step, state: SYNC_STATUS.SUCCESS }
+            : step
         )
       );
     }, 3000);
@@ -44,10 +54,10 @@ export const Synchronization = () => {
 
   useEffect(() => {
     const nextStepToSimulate = stepSyncDetail.find(
-      (step) => step.state === "initial"
+      (step) => step.state === SYNC_STATUS.INITIAL
     );
     const activeDetail = stepSyncDetail.find(
-      (step) => step.state === "loading"
+      (step) => step.state === SYNC_STATUS.LOADING
     );
 
     if (activeDetail && activeDetail.loaded !== 100) {
@@ -58,7 +68,7 @@ export const Synchronization = () => {
       setStepSyncDetail((prev) =>
         prev.map((step) =>
           step.id === nextStepToSimulate.id
-            ? { ...step, state: "loading" }
+            ? { ...step, state: SYNC_STATUS.LOADING }
             : step
         )
       );
@@ -68,11 +78,11 @@ export const Synchronization = () => {
 
     if (
       stepSyncDetail.length > 0 &&
-      stepSyncDetail.every((detail) => detail.state === "success")
+      stepSyncDetail.every((detail) => detail.state === SYNC_STATUS.SUCCESS)
     ) {
       setSyncSteps((prev) =>
         prev.map((step) =>
-          step.id === "3" ? { ...step, state: "success" } : step
+          step.id === "3" ? { ...step, state: SYNC_STATUS.SUCCESS } : step
         )
       );
     }
@@ -84,7 +94,8 @@ export const Synchronization = () => {
       setStepSyncDetail((prev) =>
         prev.map((step) => {
           const percentage = step.loaded + 10;
-          const state = percentage >= 100 ? "success" : "loading";
+          const state =
+            percentage >= 100 ? SYNC_STATUS.SUCCESS : SYNC_STATUS.LOADING;
           return step.id === currentSyncStep
             ? { ...step, loaded: percentage, state }
             : step;
@@ -122,14 +133,14 @@ export const Synchronization = () => {
             <div className="flex items-center gap-4 ">
               <div className="flex flex-col gap-0.5">
                 <span className="text-lg text-primary-light">{step.name}</span>
-                {step.subtitle && step.state === "success" && (
+                {step.subtitle && step.state === SYNC_STATUS.SUCCESS && (
                   <span className="text-[#9D9D95] text-xs">
                     {step.subtitle}
                   </span>
                 )}
               </div>
             </div>
-            {step.state === "success" && (
+            {step.state === SYNC_STATUS.SUCCESS && (
               <div className="w-7 h-7 flex justify-center rounded-sm bg-white/10 hover:bg-white/15">
                 <Image
                   src={`/checkmark.svg`}
@@ -141,7 +152,7 @@ export const Synchronization = () => {
               </div>
             )}
           </div>
-          {step.hasExtraData && step.state !== "initial" && (
+          {step.hasExtraData && step.state !== SYNC_STATUS.INITIAL && (
             <div className="flex flex-col gap-3 p-3 w-full bg-[#262626] z-20">
               {stepSyncDetail.map((detail) => (
                 <div
@@ -151,7 +162,7 @@ export const Synchronization = () => {
                   <div className="flex flex-col text-primary-light text-sm">
                     <span
                       className={`${
-                        detail.state === "success"
+                        detail.state === SYNC_STATUS.SUCCESS
                           ? "text-primary-green"
                           : "text-[#E5E5DD]"
                       } ${
@@ -169,14 +180,16 @@ export const Synchronization = () => {
                       )}s left`}</span>
                     )}
                   </div>
-                  {(detail.state === "success" ||
-                    detail.state === "loading") && (
+                  {(detail.state === SYNC_STATUS.SUCCESS ||
+                    detail.state === SYNC_STATUS.LOADING) && (
                     <Image
                       className={`${
-                        detail.state === "loading" && "animate-spin"
+                        detail.state === SYNC_STATUS.LOADING && "animate-spin"
                       }`}
                       src={`/${
-                        detail.state === "success" ? "checkmark" : "loading"
+                        detail.state === SYNC_STATUS.SUCCESS
+                          ? "checkmark"
+                          : "loading"
                       }.svg`}
                       width={16}
                       height={16}
